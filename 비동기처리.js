@@ -6,7 +6,7 @@ let fs = require("fs");
 // 함수의 매개변수로 함수를 전달해야 한다. 호출자는 시스템이다.
 // callback 함수라고 부른다.
 // 함수의 정의, 함수의 표현식, 화살표함수(람다)
-fs.readFile("./test.txt", encode="utf-8",
+let result = fs.readFile("./test.txt", encode="utf-8",
     function (error, data) {
         if(error)
         {
