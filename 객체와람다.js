@@ -59,6 +59,10 @@ scores.map(s => {
     s.avg = s.totla/3.0;
     return s; // 리턴 반드시 해줘야 함
 })
+.forEach((e)=>{
+    console.log( e );
+    console.log( e.name, e.kor, e.eng, e.mat, e.total, e.avg);
+});
 
 // 2. 문제2. 총점을 기준으로 내림차순 정렬하여 출력하세요.
 scores.sort((s1, s2) => s2.total - s1.total)
