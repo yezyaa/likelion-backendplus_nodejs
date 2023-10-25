@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- jquery : id속성과 name속성-->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+</head>
+<body>
+    <form name="myform" id="myform">
+        제목 : <input type="text" name="title" id="title" /> <br/>
+        글쓴이 : <input type="text" name="author" id="author" /> <br/>
+
+        <button type="button" id="btnWrite">글쓰기</button>  <!-- 
+            submit : 서버로 무조건 전송
+            <button>등록</button>  <input type="submit" value="등록">
+           
+            <button type="button">등록</button>  <input type="button" value="등록">
+        
+        -->
+    </form>
+</body>
+</html>
+
+<script>
+    //기존의 자바스크립트에서는 , window.onload = 문서가 전체 다 메모리에 로드되면
+    /*window.onload = function()
+    {
+
+    }*/
+
+    //=> jquery형식으로 바꾸면 $(document).ready( ()=>{})
+
+    $(()=>{
+        // $("#btnWrite").click( ()=>{
+        //     //alert("보내기");
+        //     $("#myform").prop("action", "/board/save"); //prop- 속성값을 변경하는 함수이다. attr->prop 
+        //     //여기서 요청을 보내면 요청을 받아서 처리할 페이지 url을 준다
+        //     $("#myform").prop("method", "post"); //post방식 전송 
+        //     $("#myform").submit(); //서버로 정보를 전송한다 
+        // });
+
+        // ajax 통신으로 처리를 하자
+        $("#btnWrite").click(() => {
+            $.ajax({
+                url:"/board/save2",
+                data:{"title":$("#title").val(), "author":$("#author").val() },
+                dataType:"json", // 데이터 반환값은 json으로 받겠다.
+                method:"POST" // 데이터 전송 방식
+            })
+            .done((res) => {
+                console.log(res);
+            })
+            .fail((res, error, status) => {
+                console.log(error);
+            })
+        });
+    });
+</script>
